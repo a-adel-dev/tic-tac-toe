@@ -17,4 +17,12 @@ body {
   border: 2px solid black;
   width: 30rem;
   margin: 2rem auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.slot {
+  width: 10rem;
+  border: 1px solid black;
+  height: 10rem;
 }
