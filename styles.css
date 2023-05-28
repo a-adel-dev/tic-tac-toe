@@ -33,3 +33,39 @@ body {
 .highlight {
   background-color: #eee;
 }
+
+.win-message {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.win-message button {
+  background-color: #4caf50; /* Green background color */
+  border: none; /* Remove border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Add some padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make it an inline element */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Add cursor pointer on hover */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  transition: background-color 0.3s ease; /* Add a smooth transition on background color */
+}
+
+.win-message button:hover {
+  background-color: #45a049; /* Darker green background color on hover */
+}
+
+.win-message button:active {
+  background-color: #3e8e41; /* Darker green background color when button is clicked */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly adjusted box shadow on click */
+}
+
+.hidden {
+  display: none;
+}
