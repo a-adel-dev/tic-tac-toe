@@ -14,7 +14,7 @@ body {
 }
 
 .game-grid {
-  border: 2px solid black;
+  border: 1px solid black;
   width: 30rem;
   margin: 2rem auto;
   display: grid;
@@ -25,4 +25,11 @@ body {
   width: 10rem;
   border: 1px solid black;
   height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlight {
+  background-color: #eee;
 }
