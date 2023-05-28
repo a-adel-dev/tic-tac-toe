@@ -21,15 +21,21 @@ const slot = (mark) => {
 };
 
 const game = (() => {
-  const gameBoard = [];
+  let gameBoard = [];
+  let win = null;
   let gameOver = false;
   const addSlotToGameBoard = (slot) => gameBoard.push(slot);
-  const playerOne = Player("playerOne", "X");
-  const playerTwo = Player("playerTwo", "O");
+  const playerOne = Player("player One", "X");
+  const playerTwo = Player("player Two", "O");
+  const tie = Player("Nobody", "g");
   let currentPlayer = playerOne;
   const setCurrentPlayer = (player) => (currentPlayer = player);
+  const clearGameBoard = () => (gameBoard = []);
 
-  const createGameBoard = () => {
+  const createGameBoard = (winMessage) => {
+    clearGameBoard();
+    gameOver = false;
+    win = winMessage;
     for (let i = 0; i < 9; i++) {
       const slotInstance = slot("");
       addSlotToGameBoard(slotInstance);
@@ -75,9 +81,16 @@ const game = (() => {
     renderGameBoard(gameBoardDisplay);
     if (checkWinCondition(currentPlayer) != null) {
       deactivateGameBoard(gameBoardDisplay);
+      document.getElementById("player").innerHTML =
+        checkWinCondition(currentPlayer).getName();
+      win.classList.remove("hidden");
     } else {
       switchActivePlayer();
     }
+  };
+
+  const isGameBoardFull = () => {
+    return !gameBoard.some((slot) => slot.getMark() === "");
   };
 
   const checkWinCondition = (player) => {
@@ -111,6 +124,10 @@ const game = (() => {
       }
     }
 
+    if (isGameBoardFull()) {
+      return tie;
+    }
+
     return null;
   };
 
@@ -121,6 +138,15 @@ const game = (() => {
 })();
 
 const gameBoardDisplay = document.getElementById("game-board");
+const winMessage = document.getElementById("win-message");
+const playAgainButton = document.getElementById("play-again-button");
 
-game.createGameBoard();
+playAgainButton.addEventListener("click", () => {
+  gameBoardDisplay.innerHTML = "";
+  game.createGameBoard(winMessage);
+  game.renderGameBoard(gameBoardDisplay);
+  winMessage.classList.add("hidden");
+});
+
+game.createGameBoard(winMessage);
 game.renderGameBoard(gameBoardDisplay);
